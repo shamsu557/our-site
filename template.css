@@ -205,23 +205,6 @@ body {
   }
 }
 
-@media (max-width: 992px) {
-  #intro .container {
-    padding-top: 62px;
-  }
-}
-
-@media (min-width: 1024px) {
-  #intro {
-    background-attachment: fixed;
-  }
-}
-
-@media (max-width: 768px) {
-  #intro {
-    height: 100vh;
-  }
-}
 /*pricing*/
 .container {
   width: 100%;
@@ -343,12 +326,12 @@ input:checked + .slider:before {
 }
 
 .testimonials .testimonial-item .testimonial-img {
-  width: 120px;
+  width: 18%;
   height:28vh;
   border-radius: 10px;
   border: 6px solid #fff;
   position: absolute;
-  left: -55px;
+  left: -145px;
 }
 
 .testimonials .testimonial-item h3 {
@@ -374,6 +357,7 @@ input:checked + .slider:before {
   display: inline-block;
   left: -5px;
   position: relative;
+  
 }
 
 .testimonials .testimonial-item .quote-icon-right {
