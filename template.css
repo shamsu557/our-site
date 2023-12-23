@@ -9,7 +9,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   width: 100%;
-  background-color: rgba(255, 250, 240, 0.7);
+  background-color: rgba(255, 255, 255, 0.993);
   padding-top: 0;
   background-size: cover;
   position: relative;
@@ -72,15 +72,14 @@ body {
               opacity 0.2s ease-in-out;
   background-color: var(--navbar-text-color);
 }
-/* Example CSS to cover the entire page when the menu is opened */
+
+
 .menu-opened {
   overflow: hidden; /* Prevent scrolling of the main content */
 }
 
 /* Adjust your navbar styles to expand */
 #navbar.opened {
-  /* Define styles to cover the entire page */
-  /* For instance: */
   position: fixed;
   top: 0;
   left: 0;
@@ -89,6 +88,7 @@ body {
   z-index: 1000; /* Adjust as needed */
   background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
 }
+
 
 .carousel-item img {
   height: 450px; /* Adjust the image height as needed */
@@ -109,47 +109,49 @@ body {
   right: 0;
 }
 
-.footer {
+footer {
   background-color: #f9faf9;
   color: #37423b;
   font-size: 14px;
+  padding-top: 20px;
+  padding-bottom: 10px; /* Adjust this value for the footer height */
 }
-.footer .container {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.footer .container hr {
+
+footer .container hr {
   border-top-color: #ddd;
 }
-.footer .container h5 {
+
+footer .container h5 {
   font-size: 16px;
   font-weight: bold;
   color: #444444;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced margin for a tighter layout */
 }
-.footer .container p {
+
+footer .container p {
   font-size: 14px;
   line-height: 24px;
   color: #777777;
-  margin-bottom: 0;
+  margin-bottom: 5px; /* Adjusted bottom margin */
 }
-.footer .container ul {
+
+footer .container ul {
   list-style: none;
   padding: 0;
 }
-.footer .container ul li {
-  margin-bottom: 10px;
+
+footer .container ul li {
+  margin-bottom: 5px; /* Adjusted bottom margin */
 }
-.footer .container a {
+
+footer .container a {
   color: #37423b;
 }
-.footer .container a:hover {
+
+footer .container a:hover {
   color: #007bff;
 }
-.footer .container i.fa {
-  font-size: 40px;
-  margin-right: 15px;
-}
+
 
 #myBtn {
   display: none;
@@ -221,7 +223,7 @@ body {
   width: 300px;
   padding-bottom: 1.5em;
   height: 100%;
-  background-color: #a4bdb3;
+  background-color: #b4beba;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -237,12 +239,7 @@ body {
   width: 60px;
   height: 34px;
 }
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
+
 .switch input {
   opacity: 0;
   width: 0;
@@ -273,7 +270,7 @@ body {
   transition: 0.4s;
 }
 input:checked + .slider {
-  background-color: #50bfe6;
+  background-color: #232525;
 }
 input:focus + .slider {
   box-shadow: 0 0 1px #50bfe6;
@@ -326,12 +323,12 @@ input:checked + .slider:before {
 }
 
 .testimonials .testimonial-item .testimonial-img {
-  width: 18%;
-  height:28vh;
+  width: 23%;
+  height:26vh;
   border-radius: 10px;
   border: 6px solid #fff;
   position: absolute;
-  left: -145px;
+  left: -150px;
 }
 
 .testimonials .testimonial-item h3 {

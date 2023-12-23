@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function() {
   const navbar = document.getElementById("navbar");
   const navbarToggle = navbar.querySelector(".navbar-toggler");
@@ -29,61 +30,35 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
-// Get references to the search icon, search input, and search button elements
-const searchIcon = document.getElementById('searchIcon');
-const searchInput = document.getElementById('searchInput');
-const searchButton = document.getElementById('searchButton');
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.newsletter-form');
 
-// Add an event listener to the search icon
-searchIcon.addEventListener('click', function() {
-  // Toggle the 'd-none' class to show/hide the search input
-  searchInput.classList.toggle('d-none');
-  searchButton.classList.toggle('d-none');
+  form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // Get the email input value
+      const emailInput = form.querySelector('.form-control').value;
 
-  // Focus on the search input when it's displayed
-  if (!searchInput.classList.contains('d-none')) {
-    searchInput.focus();
+      // Validate the email 
+      if (!validateEmail(emailInput)) {
+          alert('Please enter a valid email address.');
+          return;
+      }
+
+      //  form submission  to your server
+      //  logic for form submission
+      alert('Thank you for subscribing!');
+      form.reset();
+  });
+
+  // Function to validate email format
+  function validateEmail(email) {
+      const re = /\S+@\S+\.\S+/;
+      return re.test(email);
   }
 });
-
-// Event listener for the search button (submit button)
-searchButton.addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent the form from submitting
-
-  // Retrieve the search query from the input field
-  const query = searchInput.value.trim();
-  
-  //search logic
-  
-});
-
- // Activate the carousel and set the interval
- $(document).ready(function(){
-        $('.carousel').carousel({
-            interval: 3000 // Slide changes every 3 seconds
-        });
-    });
-// Get the button
-let mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-mybutton.style.display = "block";
-} else {
-mybutton.style.display = "none";
-}
-}
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-document.body.scrollTop = 0;
-document.documentElement.scrollTop = 0;
-} 
-// pricing
 function check() {
-  var checkBox = document.getElementById("checbox");
+  var checkBox = document.getElementById("checkbox");
   var text1 = document.getElementsByClassName("text1");
   var text2 = document.getElementsByClassName("text2");
   
@@ -97,35 +72,68 @@ function check() {
     }
   }
 }
-check();
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('.newsletter-form');
+    $(document).ready(function() {
+      $('#nairaButton').click(function() {
+        $('#nairaContainer').removeClass('d-none');
+        $('#dollarContainer').addClass('d-none');
+        $('#nairaButton').addClass('d-none');
+        $('#dollarButton').removeClass('d-none');
+      });
 
-  form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      // Get the email input value
-      const emailInput = form.querySelector('.form-control').value;
+      $('#dollarButton').click(function() {
+        $('#nairaContainer').addClass('d-none');
+        $('#dollarContainer').removeClass('d-none');
+        $('#dollarButton').addClass('d-none');
+        $('#nairaButton').removeClass('d-none');
+      });
+      $('.carousel').carousel({
+          interval: 3000 // Slide changes every 3 seconds
+      });
+    });
+    // Get the button
+let mybutton = document.getElementById("myBtn");
 
-      // Validate the email format (simple validation)
-      if (!validateEmail(emailInput)) {
-          // Display error message or handle invalid email format
-          alert('Please enter a valid email address.');
-          return;
-      }
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
-      //  form submission or send data to your server
-      //  logic for form submission
+function scrollFunction() {
+if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+mybutton.style.display = "block";
+} else {
+mybutton.style.display = "none";
+}
+}
+//back to top
+function topFunction() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+} 
+// Get references to the search icon, search input, and search button elements
+const searchIcon = document.getElementById('searchIcon');
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
 
-      // Show success message (temporarily an alert)
-      alert('Thank you for subscribing!');
-      // Optionally, you can reset the form after successful submission
-      form.reset();
-  });
+// Add an event listener to the search icon
+searchIcon.addEventListener('click', function() {
+// Toggle the 'd-none' class to show/hide the search input
+searchInput.classList.toggle('d-none');
+searchButton.classList.toggle('d-none');
 
-  // Function to validate email format
-  function validateEmail(email) {
-      const re = /\S+@\S+\.\S+/;
-      return re.test(email);
-  }
+// Focus on the search input when it's displayed
+if (!searchInput.classList.contains('d-none')) {
+  searchInput.focus();
+}
 });
+
+// Event listener for the search button (submit button)
+searchButton.addEventListener('click', function(event) {
+event.preventDefault(); // Prevent the form from submitting
+
+// Retrieve the search query from the input field
+const query = searchInput.value.trim();
+
+//search logic
+
+});
+
+
