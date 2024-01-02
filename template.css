@@ -4,6 +4,68 @@
   padding: 0;
 }
 
+
+@media (max-width: 768px) {
+  .carousel-card {
+    width: 60%;
+    right: 20%;
+    height:50%;
+  }
+}
+
+
+#intro {
+  width: 100%;
+  background-color:#1f1e1db3;
+  height:70vh;
+  padding-top:40px;
+  background: url("iStock-650191316.png") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#intro:before {
+  content: "";
+  background: rgba(228, 220, 220, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#intro.container {
+  padding-top: 72px;
+}
+
+
+/* Add this CSS to hide the caret */
+.dropdown-toggle-no-caret::after {
+display: none;
+}
+
+.dropdown-item:hover {
+color: #ebe3e3;
+background: #232524;
+}
+.dropdown-menu{
+  background:#e9e2e2;
+  width:600px;
+  height:320px;
+}
+.navbar-image{
+  width:280px;
+  height:180px;
+}
+#about-image{
+  width:400px;
+  height:130px;
+}
+.services-image{
+  width:130px;
+  height:90px;
+}
 body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
@@ -389,4 +451,33 @@ input:checked + .slider:before {
 
 .carousel-indicators .active {
   background-color: #555;
+}
+/*about*/
+.specific-container {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+.specific-container .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.specific-container .col {
+  padding: 0;
+}
+.specific-container .col img {
+  width: 100%;
+  height: 235px;
+}
+.specific-container .centered-card {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
 }
