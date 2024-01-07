@@ -1,62 +1,48 @@
+$(document).ready(function() {
+  $('.dropdown-menu').hide();
 
-document.addEventListener("DOMContentLoaded", function() {
-    const navbar = document.getElementById("navbar");
-    const navbarToggle = navbar.querySelector(".navbar-toggler");
-  
-    navbarToggle.addEventListener("click", function() {
-      navbar.classList.toggle("opened");
-      navbarToggle.setAttribute("aria-expanded", navbar.classList.contains("opened") ? "true" : "false");
-    });
-  
-    const navbarMenu = navbar.querySelector("#navbar-menu");
-    const navbarLinksContainer = navbar.querySelector(".navbar-links");
-  
-    navbarLinksContainer.addEventListener("click", function(clickEvent) {
-      clickEvent.stopPropagation();
-    });
-  
-    navbarMenu.addEventListener("click", function() {
-      navbar.classList.remove("opened");
-      navbarToggle.setAttribute("aria-expanded", "false");
-    });
-  
-    const options = document.getElementById("options");
-    if (options) {
-      options.querySelectorAll("input[name='navtype']").forEach(function(option) {
-        option.addEventListener("change", function(e) {
-          const navType = e.target.id.split("-").join(" ");
-          navbarMenu.classList = navType;
-        });
+  var timeout;
+
+  $('.nav-item.dropdown').mouseenter(function() {
+    clearTimeout(timeout);
+    $(this).find('.dropdown-menu').stop(true, true).slideDown(200);
+  });
+
+  $('.nav-item.dropdown, .dropdown-menu').mouseleave(function() {
+    var $dropdownMenu = $(this).find('.dropdown-menu');
+    timeout = setTimeout(function() {
+      $dropdownMenu.stop(true, true).slideUp(200);
+    }, 300); // Adjust this delay as needed for better navigation
+  });
+
+  // Keep the dropdown open when hovering over it
+  $('.dropdown-menu').mouseenter(function() {
+    clearTimeout(timeout);
+  });
+
+  // Hide the dropdown when mouse leaves the dropdown menu
+  $('.dropdown-menu').mouseleave(function() {
+    var $this = $(this);
+    timeout = setTimeout(function() {
+      $this.stop(true, true).slideUp(200);
+    }, 300); // Adjust this delay as needed for better navigation
+  });
+});
+
+
+      // Activate Carousel
+      $("#carouselIClass").carousel();
+
+      // Display the card associated with the active carousel item after a delay
+      $("#carouselIClass").on('slid.bs.carousel', function () {
+        var activeIndex = $(".carousel-item.active").index() + 1; // Get the index of active carousel item
+        $(".carousel-card").hide(); // Hide all cards
+
+        // Show the corresponding card after a delay
+        setTimeout(function() {
+          $("#card" + activeIndex).show();
+        }, 1000); // Adjust the delay time in milliseconds (1000ms = 1 second)
       });
-    }
-  });
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.newsletter-form');
-  
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Get the email input value
-        const emailInput = form.querySelector('.form-control').value;
-  
-        // Validate the email 
-        if (!validateEmail(emailInput)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-  
-        //  form submission  to your server
-        //  logic for form submission
-        alert('Thank you for subscribing!');
-        form.reset();
-    });
-  
-    // Function to validate email format
-    function validateEmail(email) {
-        const re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-  });
 function check() {
     var checkBox = document.getElementById("checkbox");
     var text1 = document.getElementsByClassName("text1");
@@ -135,5 +121,3 @@ searchButton.addEventListener('click', function(event) {
   //search logic
   
 });
-
- 
