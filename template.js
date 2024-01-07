@@ -1,23 +1,11 @@
 $(document).ready(function() {
-  let isHovered = false;
-
   $('.nav-item.dropdown').mouseenter(function() {
-    isHovered = true;
+    $('.dropdown-menu').slideUp(); // Close other dropdowns
     $(this).find('.dropdown-menu').slideDown();
   });
 
   $('.nav-item.dropdown').mouseleave(function() {
-    isHovered = false;
-    setTimeout(function() {
-      if (!isHovered) {
-        $('.dropdown-menu').slideUp();
-      }
-    }, 100); // Adjust the delay time as needed
-  });
-
-  $('.dropdown-menu').mouseleave(function() {
-    isHovered = false;
-    $(this).slideUp();
+    $(this).find('.dropdown-menu').slideUp();
   });
 
   // Close dropdown when clicking outside of it
@@ -27,6 +15,7 @@ $(document).ready(function() {
     }
   });
 });
+
       // Activate Carousel
       $("#carouselIClass").carousel();
 
