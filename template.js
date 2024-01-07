@@ -1,35 +1,32 @@
 $(document).ready(function() {
-  $('.dropdown-menu').hide();
-
-  var timeout;
+  let isHovered = false;
 
   $('.nav-item.dropdown').mouseenter(function() {
-    clearTimeout(timeout);
-    $(this).find('.dropdown-menu').stop(true, true).slideDown(200);
+    isHovered = true;
+    $(this).find('.dropdown-menu').slideDown();
   });
 
-  $('.nav-item.dropdown, .dropdown-menu').mouseleave(function() {
-    var $dropdownMenu = $(this).find('.dropdown-menu');
-    timeout = setTimeout(function() {
-      $dropdownMenu.stop(true, true).slideUp(200);
-    }, 300); // Adjust this delay as needed for better navigation
+  $('.nav-item.dropdown').mouseleave(function() {
+    isHovered = false;
+    setTimeout(function() {
+      if (!isHovered) {
+        $('.dropdown-menu').slideUp();
+      }
+    }, 100); // Adjust the delay time as needed
   });
 
-  // Keep the dropdown open when hovering over it
-  $('.dropdown-menu').mouseenter(function() {
-    clearTimeout(timeout);
-  });
-
-  // Hide the dropdown when mouse leaves the dropdown menu
   $('.dropdown-menu').mouseleave(function() {
-    var $this = $(this);
-    timeout = setTimeout(function() {
-      $this.stop(true, true).slideUp(200);
-    }, 300); // Adjust this delay as needed for better navigation
+    isHovered = false;
+    $(this).slideUp();
+  });
+
+  // Close dropdown when clicking outside of it
+  $(document).click(function(e) {
+    if (!$(e.target).closest('.nav-item.dropdown').length) {
+      $('.dropdown-menu').slideUp();
+    }
   });
 });
-
-
       // Activate Carousel
       $("#carouselIClass").carousel();
 
