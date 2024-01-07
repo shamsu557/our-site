@@ -240,6 +240,12 @@ footer .container a:hover {
   .carousel-item {
     width: 100%;
   }
+  .services-image{
+    display:none;
+  }
+  .navbar-image{
+    display:none;
+  }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
@@ -267,8 +273,13 @@ footer .container a:hover {
   .carousel-item {
     width: 100%;
   }
+  .services-image{
+    display:none;
+  }
+  .navbar-image{
+    display:none;
+  }
 }
-
 /*pricing*/
 .container {
   width: 100%;
@@ -393,6 +404,15 @@ input:checked + .slider:before {
   left: -150px;
 }
 
+.testimonials .testimonial-item .testimonial-pic {
+  width: 23%;
+  height:26vh;
+  border-radius: 10px;
+  border: 6px solid #fff;
+  position: absolute;
+  left: -50px;
+}
+
 .testimonials .testimonial-item h3 {
   font-size: 18px;
   font-weight: bold;
@@ -480,4 +500,87 @@ input:checked + .slider:before {
   width: 100%;
   padding: 20px;
   text-align: center;
+}
+/*team*/
+.member-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.rounded-img {
+  border-radius: 50%;
+  width: 170px; /* Adjust size as needed */
+  height: 160px; /* Adjust size as needed */
+  object-fit: cover;
+}
+
+.large-img {
+  width: 200px; /* Larger size for CEO image */
+  height: 200px; /* Larger size for CEO image */
+}
+#team {
+  width: 100%;
+  background-color:#dfd2d253;
+  height:100vh;
+  padding-top:40px;
+  background: url("decision-makers.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#team:before {
+ content: "";
+  background: rgba(56, 47, 47, 0.468);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#team.container {
+  padding-top: 72px;
+}
+#map {
+  height: 400px;
+  width: 100%;
+}
+#contact{
+  width: 100%;
+  background-color:#f5e7e753;
+  padding-top:40px;
+  background-size: cover;
+  position: relative; 
+}
+#contact:before {
+  content: "";
+   background: rgba(255, 254, 254, 0.876);
+   position: absolute;
+   bottom: 0;
+   top: 0;
+   left: 0;
+   right: 0;
+ }
+ 
+ .recognition-image {
+  width: 100%;
+  height: 450px;
+  border-radius: 8px;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(242, 235, 235, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.success {
+  position: relative;
+  text-align: center;
+  color: rgb(0, 0, 0);
 }
