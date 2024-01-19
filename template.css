@@ -19,7 +19,7 @@
   background-color:#1f1e1db3;
   height:70vh;
   padding-top:40px;
-  background: url("iStock-650191316.png") top center;
+  background: url("./iStock-650191316.png") top center;
   background-size: cover;
   position: relative;
 }
@@ -38,6 +38,152 @@
 #intro.container {
   padding-top: 72px;
 }
+#consulting {
+  width: 100%;
+  background-color:#e3d6d6b3;
+  height:70vh;
+  padding-top:120px;
+  background: url("./iStock-650191316.png") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#consulting:before {
+  content: "";
+  background: rgba(222, 210, 210, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#consulting.container {
+  padding-top: 72px;
+}
+#devteam{
+  width: 100%;
+  background-color:#e3d6d6b3;
+  height:75vh;
+  padding-top:160px;
+  background: url("./software-development.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#devteam:before {
+  content: "";
+  background: rgba(222, 210, 210, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#devteam.container {
+  padding-top: 72px;
+}
+
+#esd{
+  width: 100%;
+  background-color:#555151b3;
+  height:75vh;
+  padding-top:160px;
+  background: url("./esd.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#esd:before {
+  content: "";
+  background: rgba(9, 9, 9, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#esd.container {
+  padding-top: 72px;
+}
+#mobile{
+  width: 100%;
+  background-color:#555151b3;
+  height:80vh;
+  padding-top:160px;
+  background: url("./mobile-app-developer.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#mobile:before {
+  content: "";
+  background: rgba(9, 9, 9, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#mobile.container {
+  padding-top: 72px;
+}
+#train{
+  width: 100%;
+  background-color:#0f0f0fb3;
+  height:80vh;
+  padding-top:160px;
+  background: url("./train.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#train:before {
+  content: "";
+  background: rgba(9, 9, 9, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#train.container {
+  padding-top: 72px;
+}
+#web{
+  width: 100%;
+  background-color:#f6ededb3;
+  height:80vh;
+  padding-top:160px;
+  background: url("./webservice.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+
+
+#web:before {
+  content: "";
+  background: rgba(242, 225, 225, 0.314);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#web.container {
+  padding-top: 72px;
+}
+
 
 
 /* Add this CSS to hide the caret */
@@ -502,6 +648,7 @@ input:checked + .slider:before {
   text-align: center;
 }
 /*team*/
+
 .member-container {
   text-align: center;
   padding: 20px;
@@ -523,7 +670,7 @@ input:checked + .slider:before {
   background-color:#dfd2d253;
   height:100vh;
   padding-top:40px;
-  background: url("decision-makers.jpg") top center;
+  background: url("./decision-makers.jpg") top center;
   background-size: cover;
   position: relative;
 }
