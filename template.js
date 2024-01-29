@@ -1,17 +1,15 @@
 $(document).ready(function() {
-  $('.nav-item.dropdown').mouseenter(function() {
-    $('.dropdown-menu').slideUp(); // Close other dropdowns
-    $(this).find('.dropdown-menu').slideDown();
+  $('.nav-item.dropdown').hover(function() {
+    // Show current dropdown
+    $(this).find('.dropdown-menu').show();
+    // Close other dropdowns
+    $('.nav-item.dropdown').not(this).find('.dropdown-menu').hide();
   });
 
-  $('.nav-item.dropdown').mouseleave(function() {
-    $(this).find('.dropdown-menu').slideUp();
-  });
-
-  // Close dropdown when clicking outside of it
-  $(document).click(function(e) {
+  // Close dropdown when clicking outside of it or hovering over another navbar item
+  $(document).on('click mouseenter', function(e) {
     if (!$(e.target).closest('.nav-item.dropdown').length) {
-      $('.dropdown-menu').slideUp();
+      $('.dropdown-menu').hide();
     }
   });
 });
