@@ -1,5 +1,21 @@
-// Reset password form submission
-document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
+$(document).ready(function() {
+    //show dropdown on hover 
+      $('.nav-item.dropdown').hover(function() {
+      // Show current dropdown
+      $(this).find('.dropdown-menu').show();
+      // Close other dropdowns
+      $('.nav-item.dropdown').not(this).find('.dropdown-menu').hide();
+    });
+  
+    // Close dropdown when clicking outside of it or hovering over another navbar item
+    $(document).on('click mouseenter', function(e) {
+      if (!$(e.target).closest('.nav-item.dropdown').length) {
+        $('.dropdown-menu').hide();
+      }
+    });
+  });
+  
+  document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
     event.preventDefault();
     const resetInput = document.getElementById("resetInput").value;
 
@@ -8,20 +24,6 @@ document.getElementById("resetPasswordForm").addEventListener("submit", function
         return;
     }
 
-    // Here you can implement your logic to send the reset link/code
-    // For now, we'll transition to the enter code form
-    document.getElementById("resetCodeForm").style.display = "block";
-    document.getElementById("resetPasswordForm").style.display = "none";
-});
-
-document.getElementById("resetPasswordForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const resetInput = document.getElementById("resetInput").value;
-
-    if (!resetInput) {
-        alert("Please enter your email or username");
-        return;
-    }
     document.getElementById("resetCodeForm").style.display = "block";
     document.getElementById("resetPasswordForm").style.display = "none";
 
@@ -31,54 +33,39 @@ document.getElementById("resetPasswordForm").addEventListener("submit", function
     );
 
     if (foundUser) {
-            // Here, you can trigger a function to send a password reset link/code to the user's email or phone number
-            // Example:
-            sendPasswordResetLink(foundUser.email, foundUser.phoneNumber); // Replace with your actual function to send the link
+        sendPasswordResetLink(foundUser.email); // Send reset link or code to registered email
+        alert("Password reset code has been sent to your registered email address");
+    } else {
+        // If user not found, check if the input is a registered email directly
+        const registeredEmails = JSON.parse(localStorage.getItem("registeredEmails")) || [];
+        const foundEmail = registeredEmails.includes(resetInput);
 
-            alert("Password reset code has been sent to your registered phone number and email address");
+        if (foundEmail) {
+            sendPasswordResetLink(resetInput); // Send reset link or code
+            alert("Password reset code has been sent to the provided email address");
         } else {
-            alert("User not found");
+            alert("User or email not found");
             return;
         }
-    });
-
-
-// Function to send password reset link (replace this with your actual implementation)
-function sendPasswordResetLink(email, phoneNumber) {
-     // Here, integrate with your email service to send an email to the provided email address
-        // Code to send email 
-
-        // Integrate with your SMS service to send a message to the provided phone number
-        //code to send to phoneNumber
-        // Add your logic to send the reset code in  the backend for validation
-    
-    
-}
-
+    }
+});
 
 document.getElementById("resetCodeForm").addEventListener("submit", function(event) {
     event.preventDefault();
     const resetCode = document.getElementById("resetCode").value;
-    
-    if (resetCode == 1234|| resetCode==1122|| resetCode==2233) {
-                    alert("code successiful");
-                    // Transition to the set new password form
+
+    // Check if reset code matches any of the predefined codes
+    if (resetCode === "1234" || resetCode === "1122" || resetCode === "2233") {
+        alert("Code successful");
         document.getElementById("setNewPasswordForm").style.display = "block";
         document.getElementById("resetCodeForm").style.display = "none";
-                }
-        
-                else{
-                alert("invalid code")
-                return;
-            }
-    
-    // Add your logic to send the reset code, new password, and confirm password to the backend for validation
-    // Ensure the backend verifies the code and updates the password accordingly
+    } else {
+        alert("Invalid code");
+        return;
+    }
+});
 
-
-  });
-  //set New Password
-  document.getElementById("setNewPasswordForm").addEventListener("submit", function(event) {
+document.getElementById("setNewPasswordForm").addEventListener("submit", function(event) {
     event.preventDefault();
     const newPassword = document.getElementById("newPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
@@ -125,3 +112,45 @@ document.getElementById("resetCodeForm").addEventListener("submit", function(eve
     alert("Password updated successfully");
     window.location.href = "login.html"; // Redirect to login page
 });
+
+function sendPasswordResetLink(email) {
+    // Here, integrate with your email service to send an email to the provided email address
+    // Code to send email 
+    // Add your logic to send the reset code in  the backend for validation
+}
+
+  // Get the button
+  let mybutton = document.getElementById("myBtn");
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  mybutton.style.display = "block";
+  } else {
+  mybutton.style.display = "none";
+  }
+  }
+  //back to top
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    } 
+    // Get references to the search icon, search input, and search button elements
+  const searchIcon = document.getElementById('searchIcon');
+  const searchInput = document.getElementById('searchInput');
+  const searchButton = document.getElementById('searchButton');
+  
+  // Add an event listener to the search icon
+  searchIcon.addEventListener('click', function() {
+    // Toggle the 'd-none' class to show/hide the search input
+    searchInput.classList.toggle('d-none');
+    searchButton.classList.toggle('d-none');
+  
+    // Focus on the search input when it's displayed
+    if (!searchInput.classList.contains('d-none')) {
+      searchInput.focus();
+    }
+  });
+  

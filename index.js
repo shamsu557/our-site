@@ -1,13 +1,5 @@
 $(document).ready(function() {
-  // Show dropdown on click for edit profile
-$('#profileDropdown').click(function(e) {
-  e.preventDefault();
-  $(this).siblings('.dropdown-menu').toggle();
-  // Close other dropdowns
-  $('.dropdown-menu').not($(this).siblings('.dropdown-menu')).hide();
-});
-//show dropdown on hover for the remainning
-    $('.nav-item.dropdown').hover(function() {
+  $('.nav-item.dropdown').hover(function() {
     // Show current dropdown
     $(this).find('.dropdown-menu').show();
     // Close other dropdowns
@@ -21,6 +13,7 @@ $('#profileDropdown').click(function(e) {
     }
   });
 });
+
 document.addEventListener("DOMContentLoaded", function () {
   // Event listener for profile picture editing
   const editProfileLink = document.getElementById("editProfile");
@@ -99,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   registerForm.addEventListener("submit", function(event) {
       event.preventDefault();
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.toLowerCase();
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
@@ -138,31 +131,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-//Login
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const loginInput = document.getElementById("loginInput").value;
-  const loginPassword = document.getElementById("loginPassword").value;
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const loginInput=document.getElementById('loginInput').value.trim();
+    const loginPassword = document.getElementById("loginPassword").value;
+    
+    if (!loginInput || !loginPassword) {
+    alert("Please fill in all fields");
+    return;
+    }
+    
+    const loginInputLower= loginInput.includes('@') ? loginInput.toLowerCase(): loginInput;
   
-  if (!loginInput || !loginPassword) {
-  alert("Please fill in all fields");
-  return;
-  }
+    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    const foundUser = registeredUsers.find(user =>
+    user.email === loginInputLower || user.username === loginInput
+    );
+    
+    if (foundUser && foundUser.password === loginPassword) {
+    localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+    alert("Login successful");
+    window.location.href = "profile.html"; // Redirect to details page
+    } else {
+    alert("Invalid credentials or user not found");
+    }
+    });
   
-  const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-  const foundUser = registeredUsers.find(user =>
-  user.email === loginInput || user.username === loginInput
-  );
-  
-  if (foundUser && foundUser.password === loginPassword) {
-  localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
-  alert("Login successful");
-  window.location.href = "profile.html"; // Redirect to details page
-  } else {
-  alert("Invalid credentials or user not found");
-  }
-  });
-
       // Activate Carousel
       $("#carouselIClass").carousel();
 
@@ -245,73 +239,6 @@ function check() {
      }
    });
    
-   // Event listener for the search button (submit button)
-   searchButton.addEventListener('click', function(event) {
-     event.preventDefault(); // Prevent the form from submitting
-   
-     // Retrieve the search query from the input field
-     const query = searchInput.value.trim();
-     
-     //search logic
-     
-   });
    
 
 
-// Event listener for Service Request form submission
-const submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", function (event) {
-  // Prevent the default form submission behavior
-  event.preventDefault();
-
-  // Get form input values
-  const serviceName = document.getElementById("name").value;
-  const serviceCategory = document.querySelector("select.form-control").value; // Get selected category value
-  const country = document.getElementById("country").value;
-  const state = document.getElementById("state").value;
-  const phone = document.getElementById("phone").value;
-  const mail = document.getElementById("email").value;
-  const description = document.getElementById("description").value;
-
-  // Check if required fields are empty
-  if (!serviceName || !serviceCategory || !country || !state || !phone || !mail || !description) {
-    alert("Please fill in all required fields.");
-    return;
-  }
-
-  // Display success message
-  alert("Form submitted successfully.A notification has been sent to your email!");
-
-  // Send notification to the registered email address (implement this part)
- 
-
-  // Clear the text area for service description
-  const descriptionTextArea = document.getElementById("description");
-  descriptionTextArea.value = "";
-
-  // Add the submitted service to the service table
-  const serviceTable = document.getElementById("requestedServices");
-  const dateTime = new Date().toLocaleString(); // Get current date and time
-  const newRow = serviceTable.insertRow(-1);
-  const serialNumberCell = newRow.insertCell(0);
-  const dateTimeCell = newRow.insertCell(1);
-  const serviceCell = newRow.insertCell(2);
-  const categoryCell = newRow.insertCell(3);
-  const countryCell = newRow.insertCell(4);
-  const stateCell = newRow.insertCell(5);
-  const phoneCell = newRow.insertCell(6);
-  const mailCell = newRow.insertCell(7);
-  const statusCell = newRow.insertCell(8);
-  const nameCell = newRow.insertCell(8);
-
-  
-  serialNumberCell.textContent = serviceTable.rows.length - 1; // Calculate serial number
-  dateTimeCell.textContent = dateTime;
-  serviceCell.textContent = serviceName;
-  categoryCell.textContent = serviceCategory;
-  countryCell.textContent = country;
-  stateCell.textContent = state;
-  phoneCell.textContent = phone;
-  mailCell.textContent = mail;
-  statusCell.textContent = "Pending";
-});
