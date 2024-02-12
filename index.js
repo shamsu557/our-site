@@ -14,68 +14,41 @@ $(document).ready(function() {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Event listener for profile picture editing
-  const editProfileLink = document.getElementById("editProfile");
-  editProfileLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      const fileInput = document.createElement("input");
-      fileInput.type = "file";
-      fileInput.accept = ".jpg,.jfif,.png"; // Allow only JPG, JFIF, or PNG files
-      fileInput.addEventListener("change", function () {
-          handleProfilePictureUpload(fileInput.files);
+
+//pricing 
+function check() {
+  var checkBox = document.getElementById("checkbox");
+  var text1 = document.getElementsByClassName("text1");
+  var text2 = document.getElementsByClassName("text2");
+  
+  for (var i = 0; i < text1.length; i++) {
+    if (checkBox.checked == true) {
+      text1[i].classList.remove("d-none");
+      text2[i].classList.add("d-none");
+    } else if (checkBox.checked == false) {
+      text1[i].classList.add("d-none");
+      text2[i].classList.remove("d-none");
+    }
+  }
+}
+    $(document).ready(function() {
+      $('#nairaButton').click(function() {
+        $('#nairaContainer').removeClass('d-none');
+        $('#dollarContainer').addClass('d-none');
+        $('#nairaButton').addClass('d-none');
+        $('#dollarButton').removeClass('d-none');
       });
-      fileInput.click();
-  });
 
-  // Event listener for logout
-  const logoutLink = document.getElementById("logout");
-  logoutLink.addEventListener("click", function (event) {
-      event.preventDefault();
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html"; // Redirect to login page after logout
-  });
-
-  // Function to handle profile picture upload
-  function handleProfilePictureUpload(files) {
-      if (files.length === 0) return;
-
-      const file = files[0];
-      const allowedTypes = ["image/jpeg", "image/jfif", "image/png"];
-      if (!allowedTypes.includes(file.type)) {
-          alert("Please upload a JPG, JFIF, or PNG file.");
-          return;
-      }
-
-      const profilePic = document.getElementById("profile-pic");
-      const reader = new FileReader();
-
-      reader.onload = function (event) {
-          const imageUrl = event.target.result;
-          profilePic.src = imageUrl;
-          updateStoredProfilePicture(imageUrl); // Update stored URL
-      };
-
-      reader.readAsDataURL(file);
-  }
-
-  // Function to update stored profile picture URL
-  function updateStoredProfilePicture(imageUrl) {
-      localStorage.setItem("profilePicture", imageUrl);
-  }
-
-  // Function to get stored profile picture URL
-  function getStoredProfilePicture() {
-      return localStorage.getItem("profilePicture");
-  }
-
-  // Check for stored profile picture on page load
-  const storedProfilePicture = getStoredProfilePicture();
-  if (storedProfilePicture) {
-      const profilePic = document.getElementById("profile-pic");
-      profilePic.src = storedProfilePicture;
-  }
-});
+      $('#dollarButton').click(function() {
+        $('#nairaContainer').addClass('d-none');
+        $('#dollarContainer').removeClass('d-none');
+        $('#dollarButton').addClass('d-none');
+        $('#nairaButton').removeClass('d-none');
+      });
+      $('.carousel').carousel({
+          interval: 3000 // Slide changes every 3 seconds
+      });
+    });
 
 // Register
 document.addEventListener("DOMContentLoaded", function() {
@@ -130,8 +103,9 @@ document.addEventListener("DOMContentLoaded", function() {
       window.location.href = "login.html";          
     });
 });
-
-  document.getElementById("loginForm").addEventListener("submit", function(event) {
+  
+   //login 
+   document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault();
     const loginInput=document.getElementById('loginInput').value.trim();
     const loginPassword = document.getElementById("loginPassword").value;
@@ -156,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
     alert("Invalid credentials or user not found");
     }
     });
-  
+
       // Activate Carousel
       $("#carouselIClass").carousel();
 
@@ -170,40 +144,8 @@ document.addEventListener("DOMContentLoaded", function() {
           $("#card" + activeIndex).show();
         }, 1000); // Adjust the delay time in milliseconds (1000ms = 1 second)
       });
-function check() {
-    var checkBox = document.getElementById("checkbox");
-    var text1 = document.getElementsByClassName("text1");
-    var text2 = document.getElementsByClassName("text2");
-    
-    for (var i = 0; i < text1.length; i++) {
-      if (checkBox.checked == true) {
-        text1[i].classList.remove("d-none");
-        text2[i].classList.add("d-none");
-      } else if (checkBox.checked == false) {
-        text1[i].classList.add("d-none");
-        text2[i].classList.remove("d-none");
-      }
-    }
-  }
-      $(document).ready(function() {
-        $('#nairaButton').click(function() {
-          $('#nairaContainer').removeClass('d-none');
-          $('#dollarContainer').addClass('d-none');
-          $('#nairaButton').addClass('d-none');
-          $('#dollarButton').removeClass('d-none');
-        });
-  
-        $('#dollarButton').click(function() {
-          $('#nairaContainer').addClass('d-none');
-          $('#dollarContainer').removeClass('d-none');
-          $('#dollarButton').addClass('d-none');
-          $('#nairaButton').removeClass('d-none');
-        });
-        $('.carousel').carousel({
-            interval: 3000 // Slide changes every 3 seconds
-        });
-      });
 
+      
    // Get the button
    let mybutton = document.getElementById("myBtn");
 
