@@ -83,30 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
       profilePic.src = storedProfilePicture;
   }
 });
-//Login
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const loginInput = document.getElementById("loginInput").value;
-  const loginPassword = document.getElementById("loginPassword").value;
-  
-  if (!loginInput || !loginPassword) {
-  alert("Please fill in all fields");
-  return;
-  }
-  
-  const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-  const foundUser = registeredUsers.find(user =>
-  user.email === loginInput || user.username === loginInput
-  );
-  
-  if (foundUser && foundUser.password === loginPassword) {
-  localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
-  alert("Login successful");
-  window.location.href = "profile.html"; // Redirect to details page
-  } else {
-  alert("Invalid credentials or user not found");
-  }
-  });
 
 // Register
 document.addEventListener("DOMContentLoaded", function() {
@@ -161,6 +137,31 @@ document.addEventListener("DOMContentLoaded", function() {
       window.location.href = "login.html";          
     });
 });
+
+//Login
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const loginInput = document.getElementById("loginInput").value;
+  const loginPassword = document.getElementById("loginPassword").value;
+  
+  if (!loginInput || !loginPassword) {
+  alert("Please fill in all fields");
+  return;
+  }
+  
+  const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  const foundUser = registeredUsers.find(user =>
+  user.email === loginInput || user.username === loginInput
+  );
+  
+  if (foundUser && foundUser.password === loginPassword) {
+  localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+  alert("Login successful");
+  window.location.href = "profile.html"; // Redirect to details page
+  } else {
+  alert("Invalid credentials or user not found");
+  }
+  });
 
       // Activate Carousel
       $("#carouselIClass").carousel();
