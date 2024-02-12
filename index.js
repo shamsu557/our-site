@@ -83,6 +83,84 @@ document.addEventListener("DOMContentLoaded", function () {
       profilePic.src = storedProfilePicture;
   }
 });
+//Login
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const loginInput = document.getElementById("loginInput").value;
+  const loginPassword = document.getElementById("loginPassword").value;
+  
+  if (!loginInput || !loginPassword) {
+  alert("Please fill in all fields");
+  return;
+  }
+  
+  const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  const foundUser = registeredUsers.find(user =>
+  user.email === loginInput || user.username === loginInput
+  );
+  
+  if (foundUser && foundUser.password === loginPassword) {
+  localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+  alert("Login successful");
+  window.location.href = "profile.html"; // Redirect to details page
+  } else {
+  alert("Invalid credentials or user not found");
+  }
+  });
+
+// Register
+document.addEventListener("DOMContentLoaded", function() {
+  const registerForm = document.getElementById("registerForm");
+  const loginLink = document.getElementById("loginLink");
+
+  // Check if a user is already registered using stored email address or username
+  const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  const registeredUser = storedUsers.find(user => user.email === storedUsers.email);
+
+  if (registeredUser) {
+      loginLink.style.display = "block"; // Show the Login button if registered
+  }
+
+  registerForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+       // Validate the password against a specific pattern
+  const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,])(?=.{8,})/;
+  if (!passwordPattern.test(password)) {
+  alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
+  return;
+}
+      if (password !== confirmPassword) {
+          alert("Passwords do not match");
+          return;
+      }
+       // Check for empty fields
+      if (!email || !username || !password || !confirmPassword) {
+  alert("Please fill in all fields");
+  return;
+ 
+}
+
+      // Check if the email or username is already registered
+      const userExists = storedUsers.some(user => user.email === email || user.username === username);
+      if (userExists) {
+          alert("Email address or username already registered");
+          return;
+      }
+
+      // Store registered user data in localStorage
+      storedUsers.push({ email, username, password });
+      localStorage.setItem("registeredUsers", JSON.stringify(storedUsers));
+
+      alert("Registration successful");
+      loginLink.style.display = "block"; // Show the Login button after successful registration
+      window.location.href = "login.html";          
+    });
+});
 
       // Activate Carousel
       $("#carouselIClass").carousel();
@@ -177,85 +255,9 @@ function check() {
      
    });
    
-// Register
-document.addEventListener("DOMContentLoaded", function() {
-  const registerForm = document.getElementById("registerForm");
-  const loginLink = document.getElementById("loginLink");
 
-  // Check if a user is already registered using stored email address or username
-  const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-  const registeredUser = storedUsers.find(user => user.email === storedUsers.email);
 
-  if (registeredUser) {
-      loginLink.style.display = "block"; // Show the Login button if registered
-  }
-
-  registerForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-      const email = document.getElementById("email").value;
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-
-       // Validate the password against a specific pattern
-  const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,])(?=.{8,})/;
-  if (!passwordPattern.test(password)) {
-  alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
-  return;
-}
-      if (password !== confirmPassword) {
-          alert("Passwords do not match");
-          return;
-      }
-       // Check for empty fields
-      if (!email || !username || !password || !confirmPassword) {
-  alert("Please fill in all fields");
-  return;
- 
-}
-
-      // Check if the email or username is already registered
-      const userExists = storedUsers.some(user => user.email === email || user.username === username);
-      if (userExists) {
-          alert("Email address or username already registered");
-          return;
-      }
-
-      // Store registered user data in localStorage
-      storedUsers.push({ email, username, password });
-      localStorage.setItem("registeredUsers", JSON.stringify(storedUsers));
-
-      alert("Registration successful");
-      loginLink.style.display = "block"; // Show the Login button after successful registration
-      window.location.href = "login.html";          
-    });
-});
-
-//Login
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-event.preventDefault();
-const loginInput = document.getElementById("loginInput").value;
-const loginPassword = document.getElementById("loginPassword").value;
-
-if (!loginInput || !loginPassword) {
-alert("Please fill in all fields");
-return;
-}
-
-const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-const foundUser = registeredUsers.find(user =>
-user.email === loginInput || user.username === loginInput
-);
-
-if (foundUser && foundUser.password === loginPassword) {
-localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
-alert("Login successful");
-window.location.href = "profile.html"; // Redirect to details page
-} else {
-alert("Invalid credentials or user not found");
-}
-});
-// Event listener for Service Rwquest form submission
+// Event listener for Service Request form submission
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function (event) {
   // Prevent the default form submission behavior
