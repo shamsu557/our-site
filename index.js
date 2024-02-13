@@ -69,23 +69,28 @@ document.addEventListener("DOMContentLoaded", function() {
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
-
+      
+      // Check for empty fields
+    if (!email || !username || !password || !confirmPassword) {
+      alert("Please fill in all fields");
+      return;
+     
+    }
+      // check for password match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+  }
        // Validate the password against a specific pattern
   const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{"':;?/>.<,])(?=.{8,})/;
   if (!passwordPattern.test(password)) {
   alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character");
   return;
 }
-      if (password !== confirmPassword) {
-          alert("Passwords do not match");
-          return;
-      }
-       // Check for empty fields
-      if (!email || !username || !password || !confirmPassword) {
-  alert("Please fill in all fields");
-  return;
+     
+   
  
-}
+     
 
       // Check if the email or username is already registered
       const userExists = storedUsers.some(user => user.email === email || user.username === username);
