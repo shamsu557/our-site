@@ -23,7 +23,6 @@ body {
   }
 }
 
-
 #intro {
   width: 100%;
   background-color:#1f1e1db3;
@@ -417,6 +416,11 @@ footer .container a:hover {
     width:auto;
     height:auto;
   }
+  .specific-container .centered-card {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
@@ -426,6 +430,7 @@ footer .container a:hover {
   .carousel-item {
     width: 100%;
   }
+  
 }
 
 @media only screen and (min-width: 1025px) {
@@ -456,6 +461,11 @@ footer .container a:hover {
     background:#e9e2e2;
     width:auto;
     height:auto;
+  }
+  .specific-container .centered-card {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
  
 }
